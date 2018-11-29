@@ -1,0 +1,66 @@
+
+def CalSolution(progresses, speeds):
+	distribute_date = []
+	solution = []
+	count = 0
+	for i in range(0,len(progresses)):
+		if (100-int(progresses[i]))%int(speeds[i]) != int(0):
+			distribute_date.append(int((100-int(progresses[i]))/int(speeds[i])) + 1)
+		else:
+			distribute_date.append(int((100-int(progresses[i]))/int(speeds[i])))
+	
+	print (distribute_date)
+	d_date_range = iter(range(0,len(distribute_date)))
+	for j in d_date_range:
+	#j = 0
+	#while j < len(distribute_date)-1:
+		print ("count : ", j)
+		count = 1
+		com_num = j
+		while j < len(distribute_date)-1 and (distribute_date[com_num] >= distribute_date[j+1]):
+			#j += 1
+			if j >= len(distribute_date)-1:
+				break
+			j += 1
+			next(d_date_range)
+			count += 1
+			print ("aa count : ", j)
+			
+		solution.append(count)	
+	print (solution)
+	
+def Find_Phone_Number_other(p_number):
+	p_number_split = []
+	answer = True
+	my_index = 0
+	
+	for i in range(0,len(p_number)):
+		answer = doing_while(p_number,i)
+		if answer == False:
+			break
+	print (answer)
+
+def doing_while_other(p_number, i):
+	my_index = 0
+	j = -1
+	answer = True
+	temp = p_number[i]
+	
+	while j < len(p_number):
+		j += 1
+		try:
+			if len(p_number[j]) >= len(temp) and j != i:
+				p_number[j].index(temp)
+				answer = False
+				break
+		except:
+			continue
+	return answer
+	
+if __name__ == '__main__':
+	"""processes = ["99", "85", "92", "20"]
+	speeds = ["1", "15", "8", "10"]
+	CalSolution(processes,speeds)
+	"""
+	p_number = 	["2655","8495","7566","96"]
+	Find_Phone_Number2(p_number)
