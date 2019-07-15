@@ -1,0 +1,66 @@
+
+public class Territory {
+
+	private static int[][] territoryArr = {};
+	private static int count;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		territoryArr = new int[][]{
+				{0,1,0,1,0,1,0,0},
+				{0,1,0,1,1,1,0,1},
+				{1,0,0,0,0,1,0,0},
+				{1,0,0,0,0,0,0,0},
+				{1,1,1,1,0,1,0,0},
+				{0,0,0,0,0,1,0,0},
+				{0,0,0,0,0,0,1,0},
+				{0,0,0,0,0,0,0,0},
+		};
+		
+		count = 0;
+		
+		Territory terri = new Territory();
+		int pos_x = 0;
+		int pos_y = 3;
+		int cnt = 0;
+		
+//		int a = terri.getCountTerritory(territoryArr, pos_x, pos_y,cnt);
+
+	}
+
+	public void getCountTerritory(int[][] territoryArr, int pos_x, int pos_y, int cnt) {
+		// TODO Auto-generated method stub
+		System.out.println("x : " + pos_x + ", y : " + pos_y );
+		if(territoryArr[pos_x][pos_y] == 1){
+			territoryArr[pos_x][pos_y] = 2;
+//			count++;
+			cnt++;
+			
+			if(pos_x != 0){
+				this.getCountTerritory(territoryArr, pos_x-1, pos_y,cnt);
+			}
+			if(pos_x != territoryArr.length){
+				this.getCountTerritory(territoryArr, pos_x+1, pos_y,cnt);
+			}
+			
+			if(pos_y != 0){
+				this.getCountTerritory(territoryArr, pos_x, pos_y-1,cnt);
+			}
+			if(pos_y != territoryArr.length){
+				this.getCountTerritory(territoryArr, pos_x, pos_y+1,cnt);
+			}
+		}
+		System.out.println("count == " + count );
+	}
+	
+	public void getCountTerritoryArr(int[][] territoryArr) {
+		// TODO Auto-generated method stub
+		for(int i =0; i<territoryArr.length; i++){
+			for(int j =0; j<territoryArr.length; j++){
+				this.getCountTerritory(territoryArr, i, j);
+			}
+		}
+		
+		System.out.println("count == " + count );
+	}
+	
+}
