@@ -1,0 +1,36 @@
+#주식가격
+def stack_stock(prices):
+    answer = [0] * len(prices) #배열 초기화 방법
+
+    stack = []
+
+    for i in range(len(prices)):
+
+        while stack and prices[i] < prices[stack[-1]]:
+            j = stack.pop()
+            answer[j] = i - j
+        stack.append(i)
+
+    while stack:
+        j = stack.pop()
+        answer[j] = len(prices) - j - 1
+        print(f'여기22 {j} : {answer[j]}')
+
+    print (answer)
+    return answer
+
+#주식가격
+#prices = [1, 2, 3, 2, 3]
+#[4, 3, 1, 1, 0]
+#stack_stock(prices)
+
+#Phone_Number / 접두사 찾기
+#폰 넘버
+phone_book = [119, 97674223, 1195524421]
+#result = True
+def phone_num(phone_books):
+  phone_books.sort()
+  for p1, p2 in zip(phone_books, phone_books[1:]):
+    if p2.startswith(p1):
+        return False
+  return True
